@@ -1,25 +1,19 @@
 package tests;
 
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class HomeTest extends BaseTest {
 
     @Test
-    public void checkOut5() {
+    public void checkLogoutFunctionality() {
         loginPage.open();
+        softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addProduct("Sauce Labs Backpack");
-        productsPage.addProduct("Sauce Labs Bike Light");
-        productsPage.openCart();
-        cartPage.clickCheckoutButton();
-        swagLabs.open();
-        swagLabs.setName();
-        swagLabs.setlastName();
-        swagLabs.setCode();
-        swagLabs.clickContinue();
-        finalConfirmPage.open();
-        finalConfirmPage.clickFinish();
-        homePage.open();
-        homePage.clicklHome();
+        softAssert.assertTrue(productsPage.getTitle().contains("Products"), "Failed to log in");
+        productsPage.clickBurger();
+        productsPage.clickLogout();
+        softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Logout did not return to login page");
+        softAssert.assertAll();
     }
 }

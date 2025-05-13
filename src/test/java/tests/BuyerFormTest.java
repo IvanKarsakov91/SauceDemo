@@ -8,16 +8,21 @@ public class BuyerFormTest extends BaseTest {
     @Test
     public void checkOut3() {
         loginPage.open();
+        softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");
         loginPage.login("standard_user", "secret_sauce");
+        softAssert.assertTrue(productsPage.getTitle().contains("Products"), "Failed to log in");
         productsPage.addProduct("Sauce Labs Backpack");
         productsPage.addProduct("Sauce Labs Bike Light");
         productsPage.openCart();
+        softAssert.assertTrue(cartPage.getTitle().contains("Your Cart"), "Failed to open cart");
         cartPage.clickCheckoutButton();
         swagLabs.open();
-        swagLabs.setName();
-        swagLabs.setlastName();
-        swagLabs.setCode();
+        softAssert.assertEquals(driver.getCurrentUrl(), BasePage.BASE_URL + "checkout-step-one.html", "Checkout step one URL mismatch");
+        swagLabs.setFirstName("Ivan");
+        swagLabs.setLastName("Karsakov");
+        swagLabs.setZipPostalCode("1234");
         swagLabs.clickContinue();
+        softAssert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two"), "Failed to proceed to checkout step two");
+        softAssert.assertAll();
     }
 }
-

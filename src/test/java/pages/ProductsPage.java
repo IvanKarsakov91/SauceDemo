@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,11 +35,13 @@ public class ProductsPage extends BasePage {
         sortDropdown.selectByValue(sortValue);
     }
 
+    @Step("Добавление товара с именем: {produst} в корзину")
     public void addProduct(String product) {
         By productLocator = By.xpath(String.format(ADD_TO_CART_PATTERN, product));
         wait.until(ExpectedConditions.elementToBeClickable(productLocator)).click();
     }
 
+    @Step("Нажатие на кнопку корзины")
     public void openCart() {
         wait.until(ExpectedConditions.elementToBeClickable(CART_BUTTON)).click();
     }

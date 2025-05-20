@@ -5,7 +5,9 @@ import pages.*;
 
 public class BuyerFormTest extends BaseTest {
 
-    @Test
+    @Test(dataProvider = "Позитивные тесты для заполнения данных при оформлении заказа",
+            testName = "Валидное заполнение данных оформления заказа", retryAnalyzer = Retry.class,
+            priority = 1, groups = {"smoke"})
     public void checkOut3() {
         loginPage.open();
         softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");

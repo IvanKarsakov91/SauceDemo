@@ -5,7 +5,9 @@ import pages.LoginPage;
 
 public class HomeTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Возврат на страницу логина после выхода из аккаунта",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 1)
     public void checkLogoutFunctionality() {
         loginPage.open();
         softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");

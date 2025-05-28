@@ -7,7 +7,9 @@ import java.util.List;
 
 public class SortingTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Сортировка товара на главной странице az",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 1)
     public void checkSuccessSortingAZ() {
         loginPage.open();
         softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");
@@ -25,7 +27,9 @@ public class SortingTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Сортировка товара на главной странице za",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 2)
     public void checkSuccessSortingZA() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -39,7 +43,9 @@ public class SortingTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Сортировка товара на главной странице lohi",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 3)
     public void checkSuccessSortingLH() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -53,7 +59,9 @@ public class SortingTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(testName = "Сортировка товара на главной странице hilo",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 4)
     public void checkSuccessSortingHL() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

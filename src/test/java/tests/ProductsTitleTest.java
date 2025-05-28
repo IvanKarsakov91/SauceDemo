@@ -5,7 +5,9 @@ import pages.LoginPage;
 
 public class ProductsTitleTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Проверка отображения заголовка",
+            retryAnalyzer = Retry.class,
+            groups = {"regression"}, priority = 1)
     public void checkProductsPageTitle() {
         loginPage.open();
         softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");

@@ -5,7 +5,9 @@ import pages.*;
 
 public class OrderSuccessTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Валидная проверка оформления заказа",
+            retryAnalyzer = Retry.class,
+            groups = {"smoke"}, priority = 1)
     public void checkOut5() {
         loginPage.open();
         softAssert.assertEquals(driver.getCurrentUrl(), LoginPage.BASE_URL, "Login page URL mismatch");

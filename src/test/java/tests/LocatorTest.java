@@ -5,7 +5,9 @@ import org.testng.annotations.Test;
 
 public class LocatorTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Проверка доступности веб-элементов",
+            retryAnalyzer = Retry.class,
+            groups = {"smoke"}, priority = 1)
     public void checkLocator() {
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.id("user-name"));
